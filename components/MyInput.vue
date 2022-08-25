@@ -1,22 +1,29 @@
 <template>
   <input
-    v-model="value"
-    type="text"
-    @input="$emit('update:modelValue', modelValue)"
+    :modelValue="modelValue"
+    :type="type"
+    @input="onInput"
   >
 </template>
 
 <script setup lang="ts">
+
+type ModelValue = string |number
+
 interface Emits {
-  (e: 'update:modelValue', value: string): void;
+  (e: 'update:modelValue', value: ModelValue): void;
 }
 interface Props {
-  modelValue: string;
+  modelValue: ModelValue;
+  type:string|'text'
 }
-defineEmits<Emits>()
-const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+withDefaults(defineProps<Props>(), { type: 'text' })
+const onInput = (e:Event) => {
+  const target = e.target as HTMLInputElement
+  emit('update:modelValue', target.value)
+}
 
-const value = computed(() => props.modelValue)
 </script>
 
 <style scoped></style>

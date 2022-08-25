@@ -5,5 +5,7 @@ import '@/.nuxt/components.d.ts'
 jest.mock('#app', () => ({
   useState: <T>(_key: string, init: () => T) => {
     return ref(init())
-  }
+  },
+  // useRouterをモック化
+  useRouter: ():any => {}
 }))

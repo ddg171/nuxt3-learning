@@ -8,6 +8,9 @@
       </button>
     </div>
     <counter-pinia />
+    <nuxt-link to="components">
+      component
+    </nuxt-link>
   </div>
 </template>
 <script setup lang="ts">
