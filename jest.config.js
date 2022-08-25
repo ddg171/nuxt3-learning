@@ -6,7 +6,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'mjs', 'ts', 'vue'],
   moduleNameMapper: {
     '^@/(.*)': '<rootDir>/$1',
-    '#app': '<rootDir>/.nuxt/prerender/index.mjs',
+    '#app': '<rootDir>/node_modules/nuxt/dist/index.d.ts',
     // ↓piniaのテストはこれで動く
     '^pinia$': 'pinia/dist/pinia.cjs'
   },
@@ -16,6 +16,6 @@ module.exports = {
     '.+\\.(css|scss|png|jpg|svg)$': 'jest-transform-stub',
     '.*\\.(vue)$': '@vue/vue3-jest'
   },
-  transformIgnorePatterns: ['node_modules/(?!(nuxt3|unenv))'],
+  transformIgnorePatterns: ['node_modules/(?!(nuxt|nuxt3|unenv))'],
   setupFiles: ['./test-utils/global-test-utils-config.ts']
 }
