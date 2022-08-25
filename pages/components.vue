@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MyForm @submit="update" />
-    <div>{{ state.payload?.name || "none" }}/{{ state.payload?.number || "none" }}</div>
+    <MyForm :name="state.payload.name" :number="state.payload.number" @submit="update" />
+    <div>{{ state.payload.name }}/{{ state.payload.number }}</div>
     <nuxt-link to="/">
       top
     </nuxt-link>
@@ -9,11 +9,21 @@
 </template>
 
 <script lang="ts" setup>
-const state = reactive({ payload: null })
+import { reactive } from 'vue'
+import MyForm, { MyFormData } from '@/components/MyForm.vue'
+definePageMeta({
+  layout: 'hoge'
+})
 
-const update = (e) => {
+type State={
+  payload: {name:string, number:number}
+}
+
+const state = reactive<State>({ payload: { name: 'uni', number: -1 } })
+
+const update = (e: MyFormData) => {
   console.log(e)
-  state.payload = { ...e }
+  state.payload = e
 }
 
 </script>

@@ -3,7 +3,7 @@ interface EventTargetWithValue extends EventTarget{
     value:string
 }
 
-interface EventInInput extends Event {
+interface EventWithTargetValue extends Event {
     target:EventTargetWithValue
 }
 }

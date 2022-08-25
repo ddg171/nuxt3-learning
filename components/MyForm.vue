@@ -16,18 +16,28 @@
   </form>
 </template>
 
-<script setup lang="ts">
-import { reactive } from 'vue'
-type Data = {
+<script lang="ts">
+export interface MyFormData {
   name: string;
   number: number;
 };
+</script>
 
-type State = Data;
+<script setup lang="ts">
+// eslint-disable-next-line import/first
+import { reactive } from 'vue'
 
+type State = MyFormData;
 interface Emits {
-  (e: 'submit', value: Data): void;
+  (e: 'submit', value: MyFormData): void;
 }
+
+interface Props {
+  name?: string
+  number?:number
+}
+
+const props = defineProps<Props>()
 
 const emit = defineEmits<Emits>()
 
@@ -39,9 +49,20 @@ const state = reactive<State>({
 const onSubmit = () => {
   const { name, number } = state
 
-  const payload: Data = { name, number }
+  const payload: MyFormData = { name, number }
   emit('submit', payload)
 }
+
+onMounted(() => {
+  nextTick(() => {
+    if (props.name) {
+      state.name = props.name
+    }
+    if (props.number) {
+      state.number = props.number
+    }
+  })
+})
 </script>
 
 <style scoped></style>

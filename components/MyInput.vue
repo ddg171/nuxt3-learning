@@ -1,6 +1,7 @@
 <template>
   <input
     :modelValue="modelValue"
+    :value="modelValue"
     :type="type"
     @input="onInput"
   >
