@@ -1,10 +1,5 @@
 <template>
-  <input
-    :modelValue="modelValue"
-    :value="modelValue"
-    :type="type"
-    @input="onInput"
-  >
+  <input class="my-input" :modelValue="modelValue" :value="modelValue" :type="type" @input="onInput">
 </template>
 
 <script setup lang="ts">
@@ -27,4 +22,10 @@ const onInput = (e:Event) => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+@media screen and (max-width: 960px) {
+  .my-input {
+    width: 100%;
+  }
+}
+</style>
