@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MyForm :name="state.payload.name" :number="state.payload.number" @submit="update" />
+    <MyForm :initial-value="state.payload" @submit="update" />
     <div>{{ state.payload.name }}/{{ state.payload.number }}</div>
     <nuxt-link to="/">
       top
@@ -22,7 +22,6 @@ type State={
 const state = reactive<State>({ payload: { name: 'uni', number: -1 } })
 
 const update = (e: MyFormData) => {
-  console.log(e)
   state.payload = e
 }
 
